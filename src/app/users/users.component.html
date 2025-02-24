@@ -1,0 +1,36 @@
+<div class="mt-4">
+  <h2>Users</h2>
+  <a [routerLink]="['Create']" class="btn btn-primary mb-2">Create</a>
+  <hr />
+  <table class="table" *ngIf="users != undefined && users.length > 0">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.UserId }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.city }}</td>
+        <td>
+          <a class="btn btn-success" [routerLink]="['/Edit', user.name]">
+            Edit
+          </a>
+          &nbsp;
+          <a
+            class="btn btn-warning"
+            (click)="DeleteUser(user.UserId, user.name)"
+            >Delete</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="users == undefined || users.length == 0">
+    <h3>No Users Found</h3>
+  </div>
+</div>
